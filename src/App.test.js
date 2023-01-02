@@ -1,8 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { logRoles } from "@testing-library/dom";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByRole("link", { name: /learn react/i }); //scren 메소드를 통해 찾는다.
-  expect(linkElement).toBeInTheDocument(); //인자를 안받고, 요가 있는지 없는지 확인한다.
+test("button has correct initial color", () => {
+  const { container } = render(<App />);
+  logRoles(container);
+
+  //find an element with a role of button and text of 'Change to blue'
+
+  const button = screen.getByRole("button", { name: "Change to blue" });
+
+  //expeect the background color to be red
+  expect(button).toHaveStyle(`background-color: red`);
 });
+
+test("button turns blue when clciked", () => {});
