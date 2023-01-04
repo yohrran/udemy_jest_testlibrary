@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-test("button has correct initial color", () => {
+test("button has correct initial color, and update button", () => {
   render(<App />);
 
   //find an element with a role of button and text of 'Change to blue'
@@ -18,7 +18,14 @@ test("button has correct initial color", () => {
   expect(button).toHaveTextContent("Change to red");
 });
 
-test("button turns blue when clciked", () => {
+test("initial conditions", () => {
   render(<App />);
+
+  //check that the button starts out enabled
   const colorButton = screen.getByRole("button", { name: "Change to blue" });
+  expect(colorButton).toBeEnabled();
+
+  //check that the checkbox starts out unchecked
+  const checkbox = screen.getByRole("checkbox");
+  expect(checkbox).not.toBeChecked();
 });
