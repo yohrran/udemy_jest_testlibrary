@@ -35,7 +35,7 @@ test("checkbox has clicked, button has stop", () => {
   const colorButtn = screen.getByRole("button", { name: "Change to blue" });
   expect(colorButtn).toBeEnabled();
 
-  const checkbox = screen.getByRole("checkbox");
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
   fireEvent.click(checkbox);
   expect(checkbox).toBeChecked();
   expect(colorButtn).toBeDisabled();

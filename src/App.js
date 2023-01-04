@@ -11,7 +11,6 @@ function App() {
   }
 
   function clickedCheckBoxHandler(e) {
-    console.log(e.target.checked);
     setDisabled(e.target.checked);
   }
 
@@ -24,7 +23,13 @@ function App() {
       >
         Change to {newButtonColor}
       </button>
-      <input type="checkbox" onChange={clickedCheckBoxHandler} />
+      <input
+        type="checkbox"
+        onChange={clickedCheckBoxHandler}
+        defaultChecked={disabled}
+        id="disable-button-checkbox"
+      />
+      <label htmlFor="disable-button-checkbox">Disable button</label>
     </div>
   );
 }
