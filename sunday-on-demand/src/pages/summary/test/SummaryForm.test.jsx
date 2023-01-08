@@ -23,3 +23,24 @@ test("체크박스가 활성화 시, submit버튼을 클릭할 수 있다", asyn
   expect(checkbox).toBeChecked();
   expect(submitButton).toBeEnabled();
 });
+
+test("팝업창에 마우스를 올리면 팝오버가 동작한다", async () => {
+  render(<SummaryForm />);
+  const user = userEvent.setup();
+
+  const nullPopover = screen.queryByText(
+    /no ice cream will actually be delivered/i
+  );
+  // popup starts out hidden
+  expect(nullPopover).not.toBeInTheDocument();
+
+  // popover appears on mouseover of checkbox label
+  const hoverText = screen.getByText(/Terms/i);
+  await user.hover(hoverText);
+  const popover = screen.getByText(/no ice cream will actually be delivered/i);
+  expect(popover).toBeInTheDocument();
+  // popover disappears when we mouse out
+
+  await user.unhover(hoverText);
+  expect(popover).not.toBeInTheDocument();
+});
