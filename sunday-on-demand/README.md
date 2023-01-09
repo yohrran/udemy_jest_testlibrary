@@ -8,3 +8,5 @@ screen Query Methods
 
 - (exclude) : 하나만 맞는 걸 매칭
 - (include) : 하나 이상 맞는 걸 매칭
+
+배열과 객체는 toEqaul을 사용해서 테스트를 한다.
