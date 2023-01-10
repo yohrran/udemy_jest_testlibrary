@@ -39,6 +39,7 @@ test("팝업창에 마우스를 올리면 팝오버가 동작한다", async () =
   await user.hover(hoverText);
   const popover = screen.getByText(/no ice cream will actually be delivered/i);
   expect(popover).toBeInTheDocument();
+
   // popover disappears when we mouse out
 
   await user.unhover(hoverText);
