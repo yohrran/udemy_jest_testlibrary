@@ -12,3 +12,5 @@ screen Query Methods
 배열과 객체는 toEqual을 사용해서 테스트를 한다.
 
 axios를 사용할 시 비동기식으로 작동하기 때문에 테스트에 있어서 async, await, find를 이용해 테스트를 작성한다.
+
+waitFor : 타임아웃 제한까지 테스트 실행을 멈췄다가 다시 실행시키는 메소드
