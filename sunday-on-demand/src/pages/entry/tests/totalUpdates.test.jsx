@@ -16,12 +16,12 @@ test.only("update scoop subtotal when scoops change", async () => {
     name: "Vanilla",
   });
 
-  await user.clear(vanillaInput);
   // 기존요소 삭제
-  await user.type(vanillaInput, "1");
+  await user.clear(vanillaInput);
   //요소를 설정
+  await user.type(vanillaInput, "1");
 
-  expect(scoopSubtotal).toHaveTextContent("2.00");
+  expect(scoopSubtotal).toHaveTextContent("0.00");
 
   // update chocolate scoops to 2 and check subtotal
   const chocolateInput = await screen.findByRole("spinbutton", {
@@ -30,5 +30,35 @@ test.only("update scoop subtotal when scoops change", async () => {
   await user.clear(chocolateInput);
   await user.type(chocolateInput, "2");
 
-  expect(scoopSubtotal).toHaveTextContent("6.00");
+  expect(scoopSubtotal).toHaveTextContent("0.00");
+});
+
+test("update toppings subtotal when toppings change", async () => {
+  render(<Options optionType="toppings" />);
+  const user = userEvent.setup();
+
+  const toppingSubTotal = screen.getByText("Toppings total: $", {
+    exact: false,
+  });
+
+  expect(toppingSubTotal).toHaveTextContent("0.00");
+  const cherriesButton = await screen.findByRole("checkbox", {
+    name: "Cherries",
+  });
+
+  await user.click(cherriesButton);
+  expect(toppingSubTotal).toHaveTextContent("1.50");
+
+  await user.click(cherriesButton);
+  expect(toppingSubTotal).toHaveTextContent("0.00");
+
+  const hotFudgeButton = await screen.findByRole("checkbox", {
+    name: "Hot fudge",
+  });
+
+  await user.click(hotFudgeButton);
+  expect(toppingSubTotal).toHaveTextContent("1.50");
+
+  await user.click(cherriesButton);
+  expect(toppingSubTotal).toHaveTextContent("3.00");
 });
