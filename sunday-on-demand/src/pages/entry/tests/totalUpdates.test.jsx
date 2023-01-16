@@ -2,7 +2,7 @@ import { render, screen } from "../../../test-utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import Options from "../Options";
 
-test.only("update scoop subtotal when scoops change", async () => {
+test("update scoop subtotal when scoops change", async () => {
   const user = userEvent.setup();
   render(<Options optionType="scoops" />);
 
@@ -21,7 +21,7 @@ test.only("update scoop subtotal when scoops change", async () => {
   //요소를 설정
   await user.type(vanillaInput, "1");
 
-  expect(scoopSubtotal).toHaveTextContent("0.00");
+  expect(scoopSubtotal).toHaveTextContent("2.00");
 
   // update chocolate scoops to 2 and check subtotal
   const chocolateInput = await screen.findByRole("spinbutton", {
@@ -30,7 +30,7 @@ test.only("update scoop subtotal when scoops change", async () => {
   await user.clear(chocolateInput);
   await user.type(chocolateInput, "2");
 
-  expect(scoopSubtotal).toHaveTextContent("0.00");
+  expect(scoopSubtotal).toHaveTextContent("4.00");
 });
 
 test("update toppings subtotal when toppings change", async () => {

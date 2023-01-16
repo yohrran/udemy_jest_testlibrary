@@ -25,7 +25,6 @@ export function OrderDetailsProvider(props) {
     const newOptionCount = { ...optionCounts };
 
     newOptionCount[optionType][itemName] = newItemCount;
-
     setOptionCounts(newOptionCount);
   }
 
@@ -37,16 +36,19 @@ export function OrderDetailsProvider(props) {
   }
 
   function calculateTotal(optionType) {
-    const countsArray = Object.values([optionType]);
+    // get an array of counts for the option type (for example, [1, 2])
+    const countsArray = Object.values(optionCounts[optionType]);
 
+    // total the values in the array of counts for the number of items
     const totalCount = countsArray.reduce((total, value) => total + value, 0);
 
+    // multiply the total number of items by the price for this item type
     return totalCount * PricePerItem[optionType];
   }
 
   const totals = {
-    scoops: calculateTotal["scoops"],
-    toppings: calculateTotal["toppings"],
+    scoops: calculateTotal("scoops"),
+    toppings: calculateTotal("toppings"),
   };
   const value = { optionCounts, updateItemCount, resetOrder, totals };
   return <OrderDetails.Provider value={value} {...props} />;

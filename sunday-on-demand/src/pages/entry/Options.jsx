@@ -36,11 +36,7 @@ export default function Options({ optionType }) {
     />
   ));
 
-  console.log(
-    totals,
-    title,
-    totals[optionType] ? formatCurrency(totals[optionType]) : formatCurrency(0)
-  );
+  console.log(totals[optionType], totals, optionType);
   return (
     <>
       <h2>{title}</h2>
