@@ -50,6 +50,7 @@ export function OrderDetailsProvider(props) {
     scoops: calculateTotal("scoops"),
     toppings: calculateTotal("toppings"),
   };
+
   const value = { optionCounts, updateItemCount, resetOrder, totals };
   return <OrderDetails.Provider value={value} {...props} />;
 }
