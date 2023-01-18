@@ -23,3 +23,5 @@ render(<Options optionType="scoops" />, {wrapper: OrderDetailsProvider});
 
 위와 같이 하나씩 wrapper해주는게 귀찮다면, Custom Render을 이용해준다.
 래핑하는 렌더를 가지고 render을 덮는 형식이다. 라우터 등을 사용하고 있다면, 파일에 추가시켜서 필요한 모든 부분을 래핑할 수 있다.
+
+` { exact: false } 는 *byRole에서는 안되기 때문에 주의해야 한다.`

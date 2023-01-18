@@ -62,3 +62,11 @@ test("update toppings subtotal when toppings change", async () => {
   await user.click(cherriesButton);
   expect(toppingSubTotal).toHaveTextContent("3.00");
 });
+
+describe("grand total", () => {
+  test("grand total starts at $0.00", () => {});
+
+  test("grand total updates properly if scoop is added first", () => {});
+  test("grand total updates properly if topping is added first", () => {});
+  test("grand total updates properly if item is removed", () => {});
+});

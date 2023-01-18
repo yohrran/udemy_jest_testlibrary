@@ -36,13 +36,12 @@ export default function Options({ optionType }) {
     />
   ));
 
-  console.log(totals[optionType], totals, optionType);
   return (
     <>
       <h2>{title}</h2>
       <p>{formatCurrency(PricePerItem[optionType])} each</p>
       <p>
-        {title} total:{" "}
+        {title} total: {formatCurrency(totals.toppings)}
         {totals[optionType]
           ? formatCurrency(totals[optionType])
           : formatCurrency(0)}
