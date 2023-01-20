@@ -31,7 +31,7 @@ test("update scoop subtotal when scoops change", async () => {
   await user.clear(chocolateInput);
   await user.type(chocolateInput, "2");
 
-  expect(scoopSubtotal).toHaveTextContent("4.00");
+  expect(scoopSubtotal).toHaveTextContent("6.00");
 });
 
 test("update toppings subtotal when toppings change", async () => {
