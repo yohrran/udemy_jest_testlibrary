@@ -18,4 +18,7 @@ export const handlers = [
       ])
     );
   }),
+  rest.post("http://localhost:3030", (rea, res, ctx) => {
+    return res;
+  }),
 ];
