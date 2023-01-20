@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useOrderDetails } from "../contexts/OrderDetail";
+import { useOrderDetails } from "../../contexts/OrderDetail";
 import { Button } from "react-bootstrap";
 
 export default function OrderConfirmation({ setOrderPhase }) {
   const { resetOrder } = useOrderDetails();
-  const [orderNumber, setOrderNumber] = useState(0);
+  const [orderNumber, setOrderNumber] = useState(null);
 
   useEffect(() => {
     axios
