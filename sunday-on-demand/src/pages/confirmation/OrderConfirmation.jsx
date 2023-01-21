@@ -11,7 +11,6 @@ export default function OrderConfirmation({ setOrderPhase }) {
     axios
       .post(`http://localhost:3030/order`)
       .then((res) => {
-        console.log(res);
         setOrderNumber(res.data.orderNumber);
       })
       .catch((error) => console.log(error));
