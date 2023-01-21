@@ -66,10 +66,16 @@ test("Order phases for happy path", async () => {
   // check confirmation page text
   // this one is async because there is a POST request to server in between summary
   //    and confirmation pages
+  const loadingOrderNumber = screen.getByText("Loading");
+  expect(loadingOrderNumber).toBeInTheDocument();
+
   const thankYouHeader = await screen.findByRole("heading", {
     name: /thank you/i,
   });
   expect(thankYouHeader).toBeInTheDocument();
+
+  const notLoadingNumber = screen.queryByText("Loading");
+  expect(notLoadingNumber).not.toBeInTheDocument();
 
   const orderNumber = await screen.findByText(/order number/i);
   expect(orderNumber).toBeInTheDocument();
