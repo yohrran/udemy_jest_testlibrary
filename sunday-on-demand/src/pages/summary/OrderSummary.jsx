@@ -26,7 +26,7 @@ export default function OrderSummary({ setOrderPhase }) {
       </>
     );
   }
-  console.log(toppingsDisplay);
+
   return (
     <div>
       <h1>OrderSummary</h1>
