@@ -1,6 +1,6 @@
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../../test-utils/testing-library-utils";
 import Options from "../Options";
-
 test("display image for each scoop option from server", async () => {
   render(<Options optionType="scoops" />);
 
@@ -29,4 +29,36 @@ test("display image for each topping option from server", async () => {
     "M&Ms topping",
     "Hot fudge topping",
   ]);
+});
+
+test("scoops spinbutton에 음수, 10이상, 소수점이 들어가는 무효한 숫자일 경우 업데이트 불가", async () => {
+  render(<Options optionType="scoops" />);
+  const user = userEvent.setup();
+
+  const title = screen.getByText("Scoops total: $0.00");
+  expect(title).toHaveTextContent("$0.00");
+
+  const vanillaInput = await screen.findByRole("spinbutton", {
+    name: "Vanilla",
+  });
+
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, "-1");
+
+  expect(title).toHaveTextContent("$0.00");
+
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, "3.5");
+
+  expect(title).toHaveTextContent("$0.00");
+
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, "11");
+
+  expect(title).toHaveTextContent("$0.00");
+
+  await user.clear(vanillaInput);
+  await user.type(vanillaInput, "2");
+
+  expect(title).toHaveTextContent("$4.00");
 });
